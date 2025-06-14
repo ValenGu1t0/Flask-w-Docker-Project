@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+
+
+<head>
+  <meta charset="UTF-8">
+  <title>Agregar Juego</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+
+<body class="bg-gray-50 p-8">
+
+  <h1 class="text-2xl font-bold mb-6">Agregar Juego de Mesa</h1>
+
+  <form action="/agregar" method="POST" class="bg-white p-6 shadow rounded w-full max-w-md">
+    <input name="nombre" placeholder="Nombre del juego" class="border p-2 w-full mb-3" required />
+    <input name="jugadores_min" placeholder="Jugadores mínimo" class="border p-2 w-full mb-3" required />
+    <input name="jugadores_max" placeholder="Jugadores máximo" class="border p-2 w-full mb-3" required />
+    <input name="edad" placeholder="Edad mínima" class="border p-2 w-full mb-3" required />
+    <input name="pais" placeholder="País de origen" class="border p-2 w-full mb-3" required />
+    <input name="costo" placeholder="Costo en USD" class="border p-2 w-full mb-3" required />
+    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Guardar</button>
+  </form>
+</body>
+
+
+</html>
