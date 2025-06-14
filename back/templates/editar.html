@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Editar juego</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+
+<body class="bg-gray-100 p-6">
+
+  <h2>Editar Juego de Mesa</h2>
+  
+  <form action="/actualizar/{{ juego.id }}" method="POST">
+    <label>Nombre:</label>
+    <input type="text" name="nombre" value="{{ juego.nombre }}" required>
+
+    <label>Jugadores (mínimo):</label>
+    <input type="number" name="jugadores_min" value="{{ juego.jugadores_min }}" required>
+
+    <label>Jugadores (máximo):</label>
+    <input type="number" name="jugadores_max" value="{{ juego.jugadores_max }}" required>
+
+    <label>Edad mínima:</label>
+    <input type="number" name="edad" value="{{ juego.edad }}" required>
+
+    <label>País de origen:</label>
+    <input type="text" name="pais" value="{{ juego.pais }}" required>
+
+    <label>Costo (USD):</label>
+    <input type="number" name="costo" step="0.01" value="{{ juego.costo }}" required>
+
+    <button type="submit">Guardar Cambios</button>
+  </form>
+
+
+</body>
+
+
+</html>

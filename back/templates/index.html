@@ -10,7 +10,7 @@
 </head>
 
 
-<body class="bg-gray-100">
+<body class="bg-amber-100">
 
 
 
@@ -20,8 +20,7 @@
       <img src="{{ url_for('static', filename='logo.png') }}" alt="logo" class="max-w-12">
       <p class="font-semibold text-xl italic text-white">Juegos de Mesa del Mundo</p>
     </div>
-    
-
+  
     <ul class="flex flex-row">
       <a href="#inicio" class="p-6 hover:bg-amber-600 transition font-semibold text-white"><li>Inicio</li></a>
       <a href="#info" class="p-6 hover:bg-amber-600 transition font-semibold text-white"><li>Información</li></a>
@@ -30,7 +29,7 @@
 
   </nav>
 
-  <main class="flex flex-col p-8">
+  <main class="flex flex-col p-8 gap-2">
 
 
     <h1 class="text-3xl font-bold mb-6">Juegos de Mesa del Mundo</h1>
@@ -40,17 +39,28 @@
     <a href="/form" class="bg-green-600 text-white px-4 py-2 w-1/5 text-center font-semibold rounded-lg hover:bg-green-700">+ Agregar Juego</a>
 
 
-
-
-
-    <ul class="mt-6 space-y-4">
+    <ul class="flex flex-wrap gap-4 justify-start items-center mt-2">
       {% for juego in juegos %}
       <li class="bg-white shadow-lg rounded w-1/3 p-6 border-2 border-amber-600">
-        <strong>{{ juego.nombre }}</strong> (ID: {{ juego._id }})<br>
+        <strong class="text-xl font-semibold text-orange-900">{{ juego.nombre }}</strong><br>
         Jugadores: {{ juego.jugadores_min }} - {{ juego.jugadores_max }}<br>
         Edad mínima: {{ juego.edad }}<br>
         País: {{ juego.pais }}<br>
-        Costo: ${{ juego.costo }}
+        Costo: ${{ juego.costo }}<br><br>
+
+        
+        <div class="flex gap-2">
+
+          <!-- Editar -->
+          <a href="/editar/{{ juego.id }}" class="text-blue-600 hover:underline">Editar</a>
+
+          <!-- Eliminar -->
+          <form action="/eliminar/{{ juego.id }}" method="POST">
+            <button type="submit" class="text-red-600 hover:underline">Eliminar</button>
+          </form>
+
+        </div>
+
       </li>
       {% endfor %}
     </ul>
