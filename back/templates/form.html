@@ -1,28 +1,44 @@
 <!DOCTYPE html>
 <html lang="es">
 
-
 <head>
   <meta charset="UTF-8">
   <title>Agregar Juego</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
+<body class="flex flex-col items-center justify-center gap-6 bg-amber-100 ">
 
-<body class="bg-gray-50 p-8">
+  <!-- NAV -->
+  <nav class="flex flex-row justify-between items-center bg-amber-500 w-full">
 
-  <h1 class="text-2xl font-bold mb-6">Agregar Juego de Mesa</h1>
+    <div class="flex flex-row items-center gap-4 ml-4">
+      <img src="{{ url_for('static', filename='logo.png') }}" alt="logo" class="max-w-12">
+      <p class="font-semibold text-xl italic text-white">Juegos de Mesa del Mundo</p>
+    </div>
+  
+    <ul class="flex flex-row">
+      <a href="/" class="p-6 hover:bg-amber-600 transition font-semibold text-white"><li>Inicio</li></a>
+      <a href="#info" class="p-6 hover:bg-amber-600 transition font-semibold text-white"><li>Información</li></a>
+      <a href="https://github.com/ValenGu1t0" class="p-6 hover:bg-amber-600 transition font-semibold text-white"><li>GitHub</li></a>
+    </ul>
 
-  <form action="/agregar" method="POST" class="bg-white p-6 shadow rounded w-full max-w-md">
+  </nav>
+
+
+  <h1 class="font-semibold text-3xl text-amber-900">Agregar Juego de Mesa</h1>
+
+  <!-- FORM Crear -->
+  <form action="/agregar" method="POST" class="bg-white p-6 shadow rounded w-full max-w-md border-2 border-amber-600">
     <input name="nombre" placeholder="Nombre del juego" class="border p-2 w-full mb-3" required />
     <input name="jugadores_min" placeholder="Jugadores mínimo" class="border p-2 w-full mb-3" required />
     <input name="jugadores_max" placeholder="Jugadores máximo" class="border p-2 w-full mb-3" required />
     <input name="edad" placeholder="Edad mínima" class="border p-2 w-full mb-3" required />
     <input name="pais" placeholder="País de origen" class="border p-2 w-full mb-3" required />
     <input name="costo" placeholder="Costo en USD" class="border p-2 w-full mb-3" required />
-    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Guardar</button>
+    <button type="submit" class="bg-amber-700 text-white px-4 py-2 rounded hover:bg-amber-500 transition">Guardar</button>
   </form>
-</body>
 
+</body>
 
 </html>

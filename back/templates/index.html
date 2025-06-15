@@ -12,8 +12,7 @@
 
 <body class="bg-amber-100">
 
-
-
+  <!-- NAV -->
   <nav class="flex flex-row justify-between items-center bg-amber-500">
 
     <div class="flex flex-row items-center gap-4 ml-4">
@@ -29,6 +28,7 @@
 
   </nav>
 
+  <!-- Cuerpo de la App -->
   <main class="flex flex-col p-8 gap-2">
 
 
@@ -39,34 +39,37 @@
     <a href="/form" class="bg-green-600 text-white px-4 py-2 w-1/5 text-center font-semibold rounded-lg hover:bg-green-700">+ Agregar Juego</a>
 
 
-    <ul class="flex flex-wrap gap-4 justify-start items-center mt-2">
+    <!-- Display de todas las card de Juegos de Mesa -->
+    <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 justify-start items-center mt-2 ">
       {% for juego in juegos %}
-      <li class="bg-white shadow-lg rounded w-1/3 p-6 border-2 border-amber-600">
-        <strong class="text-xl font-semibold text-orange-900">{{ juego.nombre }}</strong><br>
+
+      <!-- Card -->
+      <li class="bg-white shadow-lg rounded p-6 border-2 border-amber-600">
+        <strong class="text-xl font-bold text-orange-900">{{ juego.nombre }}</strong><br>
         Jugadores: {{ juego.jugadores_min }} - {{ juego.jugadores_max }}<br>
         Edad mínima: {{ juego.edad }}<br>
         País: {{ juego.pais }}<br>
         Costo: ${{ juego.costo }}<br><br>
 
-        
-        <div class="flex gap-2">
+        <!-- Botones de Editar y Borrar -->
+        <div class="flex flex-row justify-between items-center gap-2">
 
           <!-- Editar -->
-          <a href="/editar/{{ juego.id }}" class="text-blue-600 hover:underline">Editar</a>
+          <a href="/editar/{{ juego.id }}" class="text-blue-800 border border-blue-900 rounded-lg py-2 px-4 hover:bg-blue-200 transition">Editar</a>
 
           <!-- Eliminar -->
           <form action="/eliminar/{{ juego.id }}" method="POST">
-            <button type="submit" class="text-red-600 hover:underline">Eliminar</button>
+            <button type="submit" class="text-red-800 border border-red-900 rounded-lg py-2 px-4 hover:bg-red-200 transition">Eliminar</button>
           </form>
 
         </div>
 
       </li>
+
       {% endfor %}
     </ul>
 
   </main>
-  
   
 </body>
 

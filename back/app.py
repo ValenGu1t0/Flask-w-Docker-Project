@@ -9,24 +9,26 @@ client = MongoClient("mongodb://localhost:27017/")
 db = client["juegos_db"]
 collection = db["juegos"]
 
-# Crear índice único por campo 'id'
+# Crear indice unico por campo 'id' para persistencia
 collection.create_index("id", unique=True)
 
-# ⚠️ DESARROLLO: Eliminar todos los datos si querés empezar de cero
-# collection.delete_many({})
+# Eliminar todos los datos de la BDD -> collection.delete_many({})
 
-# Ruta principal - muestra los juegos
+
+# Ruta principal - muestra los juegos - GET
 @app.route('/')
 def index():
     juegos = list(collection.find())
     return render_template("index.html", juegos=juegos)
 
-# Ruta del formulario para agregar un nuevo juego
+
+# Ruta del formulario para crear juegos
 @app.route('/form')
 def form():
     return render_template("form.html")
 
-# POST de JUEGO
+
+# Ruta que recibe los datos POST de cada Juego - invocada por el submit del form
 @app.route('/agregar', methods=["POST"])
 def agregar():
     # Buscar el último juego ingresado, ordenado por 'id' descendente
@@ -51,13 +53,14 @@ def agregar():
     return redirect('/')
 
 
-# DELETE
+# Ruta para DELETE
 @app.route('/eliminar/<int:id>', methods=["POST"])
 def eliminar(id):
     collection.delete_one({"id": id})
     return redirect('/')
 
-# PATCH
+
+# Ruta para PATCH
 @app.route('/editar/<int:id>')
 def editar(id):
     juego = collection.find_one({"id": id})
@@ -66,6 +69,7 @@ def editar(id):
     return render_template("editar.html", juego=juego)
 
 
+# Ruta invocada por el submit de editar - modifica los nuevos cambios en un juego
 @app.route('/actualizar/<int:id>', methods=["POST"])
 def actualizar(id):
     collection.update_one(
@@ -81,6 +85,6 @@ def actualizar(id):
     )
     return redirect('/')
 
-
+# Run
 if __name__ == '__main__':
     app.run(debug=True)

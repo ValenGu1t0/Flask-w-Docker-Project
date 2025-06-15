@@ -1,42 +1,77 @@
 <!DOCTYPE html>
 <html lang="es">
 
-
 <head>
   <meta charset="UTF-8" />
   <title>Editar juego</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
+<body class="flex flex-col items-center justify-center gap-6 bg-amber-100 ">
 
-<body class="bg-gray-100 p-6">
+  <!-- NAV -->
+  <nav class="flex flex-row justify-between items-center bg-amber-500 w-full">
 
-  <h2>Editar Juego de Mesa</h2>
+    <div class="flex flex-row items-center gap-4 ml-4">
+      <img src="{{ url_for('static', filename='logo.png') }}" alt="logo" class="max-w-12">
+      <p class="font-semibold text-xl italic text-white">Juegos de Mesa del Mundo</p>
+    </div>
   
-  <form action="/actualizar/{{ juego.id }}" method="POST">
-    <label>Nombre:</label>
-    <input type="text" name="nombre" value="{{ juego.nombre }}" required>
+    <ul class="flex flex-row">
+      <a href="/" class="p-6 hover:bg-amber-600 transition font-semibold text-white"><li>Inicio</li></a>
+      <a href="#info" class="p-6 hover:bg-amber-600 transition font-semibold text-white"><li>Información</li></a>
+      <a href="https://github.com/ValenGu1t0" class="p-6 hover:bg-amber-600 transition font-semibold text-white"><li>GitHub</li></a>
+    </ul>
 
-    <label>Jugadores (mínimo):</label>
-    <input type="number" name="jugadores_min" value="{{ juego.jugadores_min }}" required>
+  </nav>
 
-    <label>Jugadores (máximo):</label>
-    <input type="number" name="jugadores_max" value="{{ juego.jugadores_max }}" required>
 
-    <label>Edad mínima:</label>
-    <input type="number" name="edad" value="{{ juego.edad }}" required>
+  <h2 class="font-semibold text-2xl text-amber-800">Editar Juego de Mesa</h2>
+  
 
-    <label>País de origen:</label>
-    <input type="text" name="pais" value="{{ juego.pais }}" required>
+  <!-- FORM Editar -->
+  <form action="/actualizar/{{ juego.id }}" method="POST" 
+  class="flex flex-col gap-4 bg-white p-6 shadow rounded w-full max-w-md border-2 border-amber-600">
 
-    <label>Costo (USD):</label>
-    <input type="number" name="costo" step="0.01" value="{{ juego.costo }}" required>
+    <div>
+      <label class="text-2xl font-semibold text-amber-900">Nombre:</label>
+      <input type="text" name="nombre" value="{{ juego.nombre }}" required
+      class="text-2xl font-semibold text-amber-900">
+    </div>
 
-    <button type="submit">Guardar Cambios</button>
+    <div>
+      <label class="text-lg font-semibold">Jugadores (mínimo):</label>
+      <input type="number" name="jugadores_min" value="{{ juego.jugadores_min }}" required
+      class="border p-2 w-full mb-3">
+    </div>
+
+    <div>
+      <label class="text-lg font-semibold">Jugadores (máximo):</label>
+      <input type="number" name="jugadores_max" value="{{ juego.jugadores_max }}" required
+      class="border p-2 w-full mb-3">
+    </div>
+
+    <div>
+      <label class="text-lg font-semibold">Edad mínima:</label>
+      <input type="number" name="edad" value="{{ juego.edad }}" required
+      class="border p-2 w-full mb-3">
+    </div>
+
+    <div>
+      <label class="text-lg font-semibold">País de origen:</label>
+      <input type="text" name="pais" value="{{ juego.pais }}" required
+      class="border p-2 w-full mb-3">
+    </div>
+
+    <div></div>
+      <label class="text-lg font-semibold">Costo (USD):</label>
+      <input type="number" name="costo" step="0.01" value="{{ juego.costo }}" required
+      class="border p-2 w-full mb-3">
+    </div>
+
+    <button type="submit" class="bg-amber-700 text-white px-4 py-2 rounded hover:bg-amber-500 transition">Guardar Cambios</button>
   </form>
 
-
 </body>
-
 
 </html>
