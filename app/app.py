@@ -1,18 +1,25 @@
 from flask import Flask, render_template, request, redirect
 from pymongo import MongoClient
 from pymongo.errors import DuplicateKeyError
+import os
 
 app = Flask(__name__)
 
-# Conexión local a MongoDB
-client = MongoClient("mongodb://localhost:27017/")
-db = client["juegos_db"]
+# CONEXIÓN A MONGODB USANDO VARIABLES DE ENTORNO
+mongo_user = os.environ.get("MONGO_USER", "root")
+mongo_pass = os.environ.get("MONGO_PASS", "valen")
+mongo_host = os.environ.get("MONGO_HOST", "mongo")
+mongo_db = os.environ.get("MONGO_DB", "juegos_db")
+
+connection_string = f"mongodb://{mongo_user}:{mongo_pass}@{mongo_host}:27017/{mongo_db}?authSource=admin"
+
+client = MongoClient(connection_string)
+db = client[mongo_db]
 collection = db["juegos"]
+
 
 # Crear indice unico por campo 'id' para persistencia
 collection.create_index("id", unique=True)
-
-# Eliminar todos los datos de la BDD -> collection.delete_many({})
 
 
 # Ruta principal - muestra los juegos - GET

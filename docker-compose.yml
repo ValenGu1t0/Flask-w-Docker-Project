@@ -1,0 +1,36 @@
+services:
+  mongo:
+    image: mongo
+    container_name: mongodb
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=valen
+      - MONGO_INITDB_DATABASE=juegos_db
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - appnet
+
+  web:
+    build: .
+    container_name: flask_app
+    ports:
+      - "8080:80"
+    depends_on:
+      - mongo
+    environment:
+      - MONGO_USER=root
+      - MONGO_PASS=valen
+      - MONGO_HOST=mongo
+      - MONGO_DB=juegos_db
+    networks:
+      - appnet
+
+networks:
+  appnet:
+
+volumes:
+  mongodb_data:
