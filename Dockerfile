@@ -6,7 +6,7 @@ RUN apt-get update && \
     apt-get install -y apache2 apache2-dev libapache2-mod-wsgi-py3 && \
     rm -rf /var/lib/apt/lists/*
 
-# Creamos directorio de la app
+# Directorio de la app
 WORKDIR /var/www/html/app
 
 # Copiamos requirements.txt e instalamos dependencias
@@ -16,7 +16,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copiamos el código fuente
 COPY app/ /var/www/html/app/
 
-# Copiamos archivo wsgi.py al nivel superior (fuera de /app)
+# Copiamos archivo wsgi.py al nivel superior
 COPY wsgi.py /var/www/html/wsgi.py
 
 # Copiamos configuración de Apache
